@@ -1,5 +1,7 @@
 <h1>Welcome!</h1>
 
 <%= form_tag("/welcome/auth", method: "post") do %>
+  <%= label_tag("site", "Site Url") %>
+  <%= text_field_tag("site") %>
   <%= submit_tag("Auth") %>
 <% end %>
