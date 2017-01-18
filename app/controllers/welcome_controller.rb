@@ -23,6 +23,6 @@ class WelcomeController < ApplicationController
     @consumer = OAuth::Consumer.new("tXfkkCnAcDNI1zZj0fGy", "7qBZGedFwZGYJU18Pt7Uf3LQ4PFYCgc20ggG2VqN", site: site)
     @request_token  = OAuth::RequestToken.from_hash(@consumer, hash)
     @access_token = @request_token.get_access_token(oauth_verifier: params["oauth_verifier"])
-    @cases = @access_token.get('/api/v2/users')
+    @cases = @access_token.get('/api/v2/cases?status=pending')
   end
 end
