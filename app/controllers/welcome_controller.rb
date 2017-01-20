@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
   def auth
     site = params[:site]
     @callback_url = "https://desk-ca-testing.herokuapp.com/welcome/callback"
-    @consumer = OAuth::Consumer.new("ik8W2HH6aSUH1pxtG2h8", "stBQDwitJsvXYeAXtLwAGsYpp0t75BnHMfREKMoL", site: site)
+    @consumer = OAuth::Consumer.new("rGummhyRcVDYNeRmC5vz", "Y2R4WzDqcG83BQy9cTcVWQa6jALF2daF8X1Ad2U", site: site)
     @request_token = @consumer.get_request_token(oauth_callback: @callback_url)
 
     session[:token] = @request_token.token
@@ -20,7 +20,7 @@ class WelcomeController < ApplicationController
 
     hash = { oauth_token: session[:token], oauth_token_secret: session[:token_secret]}
     @consumer = session[:consumer]
-    @consumer = OAuth::Consumer.new("ik8W2HH6aSUH1pxtG2h8", "stBQDwitJsvXYeAXtLwAGsYpp0t75BnHMfREKMoL", site: site)
+    @consumer = OAuth::Consumer.new("rGummhyRcVDYNeRmC5vz", "Y2R4WzDqcG83BQy9cTcVWQa6jALF2daF8X1Ad2U", site: site)
     @request_token  = OAuth::RequestToken.from_hash(@consumer, hash)
     @access_token = @request_token.get_access_token(oauth_verifier: params["oauth_verifier"])
     @cases = @access_token.get('/api/v2/cases?status=pending')
